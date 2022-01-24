@@ -1,9 +1,12 @@
 package es.julionieto.rana;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,8 +24,9 @@ public class App extends Application {
     
     //Personaje
     Group groupPersonaje;
-    double posXPersonaje = 370;
-    double posYPersonaje = 560;
+    double posXPersonaje = 375;
+    double posYPersonaje = 570;
+    
     
     //Puntuación
     int puntuacion = 0;
@@ -31,13 +35,14 @@ public class App extends Application {
     boolean gameOver = false;
     private Object paneInfo;
     
+    
     @Override
     public void start(Stage stage) {
         
         //Escena
         Pane paneRoot = new Pane();  
         Scene scene = new Scene(paneRoot, 800, 600, Color.LIGHTGRAY);
-        stage.setTitle("PongFX");
+        stage.setTitle("Frogger");
         stage.setScene(scene);
         stage.show();
         
@@ -58,85 +63,174 @@ public class App extends Application {
         Rectangle cabeza = new Rectangle(40, 20, Color.LIGHTGREEN);
         cabeza.setX(20);
         cabeza.setY(0);
-        cabeza.setWidth(20);
-        cabeza.setHeight(20);
+        cabeza.setWidth(10);
+        cabeza.setHeight(10);
         groupPersonaje.getChildren().add(cabeza);
+        
         Rectangle ojoIzq = new Rectangle(5, 5, Color.BLACK);
         ojoIzq.setX(22);
         ojoIzq.setY(2);
-        ojoIzq.setWidth(5);
-        ojoIzq.setHeight(5);
+        ojoIzq.setWidth(2);
+        ojoIzq.setHeight(2);
         groupPersonaje.getChildren().add(ojoIzq);
+        
         Rectangle ojoDer = new Rectangle(5, 5, Color.BLACK);
-        ojoDer.setX(32);
+        ojoDer.setX(26);
         ojoDer.setY(2);
-        ojoDer.setWidth(5);
-        ojoDer.setHeight(5);
+        ojoDer.setWidth(2);
+        ojoDer.setHeight(2);
         groupPersonaje.getChildren().add(ojoDer);
         
         //Cuerpo
         Rectangle cuerpo = new Rectangle(40, 20, Color.LIGHTGREEN);
         cuerpo.setX(17.5);
-        cuerpo.setY(20);
-        cuerpo.setWidth(25);
-        cuerpo.setHeight(20);
+        cuerpo.setY(10);
+        cuerpo.setWidth(15);
+        cuerpo.setHeight(15);
         groupPersonaje.getChildren().add(cuerpo);
         
         //Piernas delanteras
         Rectangle piernaDelIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
-        piernaDelIzq.setX(11);
-        piernaDelIzq.setY(20);
-        piernaDelIzq.setWidth(7);
-        piernaDelIzq.setHeight(5);
+        piernaDelIzq.setX(14);
+        piernaDelIzq.setY(14);
+        piernaDelIzq.setWidth(4);
+        piernaDelIzq.setHeight(2);
         groupPersonaje.getChildren().add(piernaDelIzq);
+        
         Rectangle piernaDelDer = new Rectangle(40, 20, Color.LIGHTGREEN);
-        piernaDelDer.setX(42);
-        piernaDelDer.setY(20);
-        piernaDelDer.setWidth(7);
-        piernaDelDer.setHeight(5);
+        piernaDelDer.setX(32);
+        piernaDelDer.setY(14);
+        piernaDelDer.setWidth(4);
+        piernaDelDer.setHeight(2);
         groupPersonaje.getChildren().add(piernaDelDer);
+        
         Rectangle pieDelIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
-        pieDelIzq.setX(11);
-        pieDelIzq.setY(10);
-        pieDelIzq.setWidth(7);
-        pieDelIzq.setHeight(10);
+        pieDelIzq.setX(14);
+        pieDelIzq.setY(8);
+        pieDelIzq.setWidth(4);
+        pieDelIzq.setHeight(7);
         groupPersonaje.getChildren().add(pieDelIzq);
+        
         Rectangle pieDelDer = new Rectangle(40, 20, Color.LIGHTGREEN);
-        pieDelDer.setX(42);
-        pieDelDer.setY(10);
-        pieDelDer.setWidth(7);
-        pieDelDer.setHeight(10);
+        pieDelDer.setX(32);
+        pieDelDer.setY(8);
+        pieDelDer.setWidth(4);
+        pieDelDer.setHeight(7);
         groupPersonaje.getChildren().add(pieDelDer);
         
         //Piernas traseras
         Rectangle piernaTraIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
-        piernaTraIzq.setX(11);
-        piernaTraIzq.setY(35);
+        piernaTraIzq.setX(14);
+        piernaTraIzq.setY(20);
         piernaTraIzq.setWidth(7);
         piernaTraIzq.setHeight(5);
         groupPersonaje.getChildren().add(piernaTraIzq);
         Rectangle piernaTraDer = new Rectangle(40, 20, Color.LIGHTGREEN);
-        piernaTraDer.setX(42);
-        piernaTraDer.setY(35);
+        piernaTraDer.setX(29);
+        piernaTraDer.setY(20);
         piernaTraDer.setWidth(7);
         piernaTraDer.setHeight(5);
         groupPersonaje.getChildren().add(piernaTraDer);
+        
         Rectangle pieTraIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
-        pieTraIzq.setX(11);
-        pieTraIzq.setY(30);
-        pieTraIzq.setWidth(5);
-        pieTraIzq.setHeight(5);
+        pieTraIzq.setX(14);
+        pieTraIzq.setY(18);
+        pieTraIzq.setWidth(4);
+        pieTraIzq.setHeight(2);
         groupPersonaje.getChildren().add(pieTraIzq);
+        
         Rectangle pieTraDer = new Rectangle(40, 20, Color.LIGHTGREEN);
-        pieTraDer.setX(44);
-        pieTraDer.setY(30);
-        pieTraDer.setWidth(5);
-        pieTraDer.setHeight(5);
+        pieTraDer.setX(32);
+        pieTraDer.setY(18);
+        pieTraDer.setWidth(4);
+        pieTraDer.setHeight(2);
         groupPersonaje.getChildren().add(pieTraDer);
         
         // Colocar personaje en su posición de inicio
         groupPersonaje.setLayoutX(posXPersonaje);
         groupPersonaje.setLayoutY(posYPersonaje);
+        
+        //Coches
+        Rectangle coche1 = new Rectangle (30, 30, Color.RED);
+        coche1.setX(770);
+        coche1.setY(452.5);
+        paneRoot.getChildren().add(coche1);
+        
+        Rectangle coche2 = new Rectangle (30, 30, Color.RED);
+        coche2.setX(670);
+        coche2.setY(452.5);
+        paneRoot.getChildren().add(coche2);
+        
+        Rectangle coche3 = new Rectangle (30, 30, Color.RED);
+        coche3.setX(570);
+        coche3.setY(452.5);
+        paneRoot.getChildren().add(coche3);
+        
+        Rectangle coche4 = new Rectangle (30, 30, Color.RED);
+        coche4.setX(470);
+        coche4.setY(452.5);
+        paneRoot.getChildren().add(coche4);
+        
+        Rectangle coche5 = new Rectangle (30, 30, Color.RED);
+        coche5.setX(370);
+        coche5.setY(452.5);
+        paneRoot.getChildren().add(coche5);
+        
+        Rectangle coche6 = new Rectangle (30, 30, Color.RED);
+        coche6.setX(270);
+        coche6.setY(452.5);
+        paneRoot.getChildren().add(coche6);
+        
+        Rectangle coche7 = new Rectangle (30, 30, Color.RED);
+        coche7.setX(170);
+        coche7.setY(452.5);
+        paneRoot.getChildren().add(coche7);
+        
+        Rectangle coche8 = new Rectangle (30, 30, Color.RED);
+        coche8.setX(60);
+        coche8.setY(452.5);
+        paneRoot.getChildren().add(coche8);
+        
+        Rectangle coche9 = new Rectangle (30, 30, Color.RED);
+        coche9.setX(720);
+        coche9.setY(379.5);
+        paneRoot.getChildren().add(coche9);
+        
+        Rectangle coche10 = new Rectangle (30, 30, Color.RED);
+        coche10.setX(620);
+        coche10.setY(379.5);
+        paneRoot.getChildren().add(coche10);
+        
+        Rectangle coche11 = new Rectangle (30, 30, Color.RED);
+        coche11.setX(520);
+        coche11.setY(379.5);
+        paneRoot.getChildren().add(coche11);
+        
+        Rectangle coche12 = new Rectangle (30, 30, Color.RED);
+        coche12.setX(420);
+        coche12.setY(379.5);
+        paneRoot.getChildren().add(coche12);
+        
+        Rectangle coche13 = new Rectangle (30, 30, Color.RED);
+        coche13.setX(320);
+        coche13.setY(379.5);
+        paneRoot.getChildren().add(coche13);
+        
+        Rectangle coche14 = new Rectangle (30, 30, Color.RED);
+        coche14.setX(220);
+        coche14.setY(379.5);
+        paneRoot.getChildren().add(coche14);
+        
+        Rectangle coche15 = new Rectangle (30, 30, Color.RED);
+        coche15.setX(120);
+        coche15.setY(379.5);
+        paneRoot.getChildren().add(coche15);
+        
+        Rectangle coche16 = new Rectangle (30, 30, Color.RED);
+        coche16.setX(10);
+        coche16.setY(379.5);
+        paneRoot.getChildren().add(coche16);
+        
         
         VBox paneInfo = new VBox();
         paneInfo.setPrefWidth(scene.getWidth());
