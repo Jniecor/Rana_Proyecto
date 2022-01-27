@@ -89,14 +89,14 @@ public class App extends Application {
         cabeza.setWidth(10);
         cabeza.setHeight(10);
         groupPersonaje.getChildren().add(cabeza);
-        
+            //Ojo izquierdo
         Rectangle ojoIzq = new Rectangle(5, 5, Color.BLACK);
         ojoIzq.setX(22);
         ojoIzq.setY(2);
         ojoIzq.setWidth(2);
         ojoIzq.setHeight(2);
         groupPersonaje.getChildren().add(ojoIzq);
-        
+            //Ojo derecho
         Rectangle ojoDer = new Rectangle(5, 5, Color.BLACK);
         ojoDer.setX(26);
         ojoDer.setY(2);
@@ -113,27 +113,28 @@ public class App extends Application {
         groupPersonaje.getChildren().add(cuerpo);
         
         //Piernas delanteras
+            //Pierna delantera izquierda
         Rectangle piernaDelIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
         piernaDelIzq.setX(14);
         piernaDelIzq.setY(14);
         piernaDelIzq.setWidth(4);
         piernaDelIzq.setHeight(2);
         groupPersonaje.getChildren().add(piernaDelIzq);
-        
+            //Pierna delantera derecha
         Rectangle piernaDelDer = new Rectangle(40, 20, Color.LIGHTGREEN);
         piernaDelDer.setX(32);
         piernaDelDer.setY(14);
         piernaDelDer.setWidth(4);
         piernaDelDer.setHeight(2);
         groupPersonaje.getChildren().add(piernaDelDer);
-        
+            //Pie delantero izquierdo
         Rectangle pieDelIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
         pieDelIzq.setX(14);
         pieDelIzq.setY(8);
         pieDelIzq.setWidth(4);
         pieDelIzq.setHeight(7);
         groupPersonaje.getChildren().add(pieDelIzq);
-        
+            //Pie delantero derecho
         Rectangle pieDelDer = new Rectangle(40, 20, Color.LIGHTGREEN);
         pieDelDer.setX(32);
         pieDelDer.setY(8);
@@ -142,26 +143,28 @@ public class App extends Application {
         groupPersonaje.getChildren().add(pieDelDer);
         
         //Piernas traseras
+            //Pierna trasera izquierda
         Rectangle piernaTraIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
         piernaTraIzq.setX(14);
         piernaTraIzq.setY(20);
         piernaTraIzq.setWidth(7);
         piernaTraIzq.setHeight(5);
         groupPersonaje.getChildren().add(piernaTraIzq);
+            //Pierna trasera derecha
         Rectangle piernaTraDer = new Rectangle(40, 20, Color.LIGHTGREEN);
         piernaTraDer.setX(29);
         piernaTraDer.setY(20);
         piernaTraDer.setWidth(7);
         piernaTraDer.setHeight(5);
         groupPersonaje.getChildren().add(piernaTraDer);
-        
+            //Pie trasero izquierdo
         Rectangle pieTraIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
         pieTraIzq.setX(14);
         pieTraIzq.setY(18);
         pieTraIzq.setWidth(4);
         pieTraIzq.setHeight(2);
         groupPersonaje.getChildren().add(pieTraIzq);
-        
+            //Pie trasero derecho
         Rectangle pieTraDer = new Rectangle(40, 20, Color.LIGHTGREEN);
         pieTraDer.setX(32);
         pieTraDer.setY(18);
@@ -174,6 +177,7 @@ public class App extends Application {
         groupPersonaje.setLayoutY(posYPersonaje);
         
         //Coches
+            //Primera fila
         Image coche1 = new Image(getClass().getResourceAsStream("/images/Coche_rojo_der.png"));
         ImageView coche1View = new ImageView(coche1);
         coche1View.setX(770); 
@@ -221,7 +225,7 @@ public class App extends Application {
         coche8View.setX(0); 
         coche8View.setY(posicionFila1Coches);   
         paneRoot.getChildren().add(coche8View);
-        
+            //Segunda fila
         Image coche9 = new Image(getClass().getResourceAsStream("/images/Coche_amarillo_izq.png"));
         ImageView coche9View = new ImageView(coche9);
         coche9View.setX(710); 
@@ -385,6 +389,7 @@ public class App extends Application {
         labelGameover.setFont(new Font(50));
         labelGameover.setFill(Color.WHITE);
         
+        //Adición de los label a la escena
         paneInfo.getChildren().add(labelMarcador);
         paneInfo.getChildren().add(labelGameover);
         paneRoot.getChildren().add(paneInfo);
