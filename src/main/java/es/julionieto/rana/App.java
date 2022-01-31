@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -28,28 +29,28 @@ public class App extends Application {
     //-----<PRIMERA PARTE>-----//
     //Coches (Autopista)    
     //Fila 1 (abajo)
-    final double posicionFila1Coches = 456.5;
+    final double POSICION_FILA_1_COCHES = 456.5;
     
     //Fila 2 (Arriba)
-    final double posicionFila2Coches = 383.5;
+    final double POSICION_FILA_2_COCHES = 383.5;
     
     //-----<SEGUNDA PARTE>-----//
     //Troncos (Río)
     //Fila 1 (Abajo)
-    final double posicionFila1Tronco = 237.5;
+    final double POSICION_FILA_1_TRONCOS = 237.5;
     
     //Fila 2 (Arriba)
-    final double posicionFila2Tronco = 165.5;
+    final double POSICION_FILA_2_TRONCOS = 165.5;
     
     //Nenúfares (Río)
     //Fila 1 (Abajo)
-    final double posicionFila1Nenufar = 273.5;
+    final double POSICION_FILA_1_NENUFARES = 273.5;
     
     //Fila 2 (Medio)   
-    final double posicionFila2Nenufar = 201.5;
+    final double POSICION_FILA_2_NENUFARES = 201.5;
     
     //Fila 3 (Arriba)
-    final double posicionFila3Nenufar = 129.5;
+    final double POSICION_FILA_3_NENUFARES = 129.5;
     
     //-----<Puntuación>-----//
     int puntuacion = 0;
@@ -177,202 +178,245 @@ public class App extends Application {
         groupPersonaje.setLayoutY(posYPersonaje);
         
         //Coches
-            //Primera fila
-        Image coche1 = new Image(getClass().getResourceAsStream("/images/Coche_rojo_der.png"));
-        ImageView coche1View = new ImageView(coche1);
-        coche1View.setX(770); 
-        coche1View.setY(posicionFila1Coches);   
-        paneRoot.getChildren().add(coche1View);
+        //4 imagenes de los coches 
+        Image cocheRojoDer = new Image(getClass().getResourceAsStream("/images/Coche_rojo_der.png"));
+        Image cocheRojoIzq = new Image(getClass().getResourceAsStream("/images/Coche_rojo_izq.png"));
+        Image cocheAmarilloDer = new Image(getClass().getResourceAsStream("/images/Coche_amarillo_der.png"));
+        Image cocheAmarilloIzq = new Image(getClass().getResourceAsStream("/images/Coche_amarillo_izq.png"));
         
-        Image coche2 = new Image(getClass().getResourceAsStream("/images/Coche_rojo_der.png"));
-        ImageView coche2View = new ImageView(coche2);
-        coche2View.setX(660); 
-        coche2View.setY(posicionFila1Coches);   
-        paneRoot.getChildren().add(coche2View);
+        //Array de los coches
+        ImageView cocheView[] = new ImageView[16];
+        //Primera fila
+        cocheView[0] = new ImageView(cocheRojoDer);
+        cocheView[0].setX(770);
         
-        Image coche3 = new Image(getClass().getResourceAsStream("/images/Coche_amarillo_der.png"));
-        ImageView coche3View = new ImageView(coche3);
-        coche3View.setX(550); 
-        coche3View.setY(posicionFila1Coches);   
-        paneRoot.getChildren().add(coche3View);
+        cocheView[1] = new ImageView(cocheAmarilloDer);
+        cocheView[1].setX(660);
         
-        Image coche4 = new Image(getClass().getResourceAsStream("/images/Coche_rojo_der.png"));
-        ImageView coche4View = new ImageView(coche4);
-        coche4View.setX(440); 
-        coche4View.setY(posicionFila1Coches);   
-        paneRoot.getChildren().add(coche4View);
+        cocheView[2] = new ImageView(cocheRojoDer);
+        cocheView[2].setX(550);
         
-        Image coche5 = new Image(getClass().getResourceAsStream("/images/Coche_rojo_der.png"));
-        ImageView coche5View = new ImageView(coche5);
-        coche5View.setX(330); 
-        coche5View.setY(posicionFila1Coches);   
-        paneRoot.getChildren().add(coche5View);
+        cocheView[3] = new ImageView(cocheRojoDer);
+        cocheView[3].setX(440);
         
-        Image coche6 = new Image(getClass().getResourceAsStream("/images/Coche_rojo_der.png"));
-        ImageView coche6View = new ImageView(coche6);
-        coche6View.setX(220); 
-        coche6View.setY(posicionFila1Coches);   
-        paneRoot.getChildren().add(coche6View);
+        cocheView[4] = new ImageView(cocheAmarilloDer);
+        cocheView[4].setX(330);
         
-        Image coche7 = new Image(getClass().getResourceAsStream("/images/Coche_amarillo_der.png"));
-        ImageView coche7View = new ImageView(coche7);
-        coche7View.setX(110); 
-        coche7View.setY(posicionFila1Coches);   
-        paneRoot.getChildren().add(coche7View);
+        cocheView[5] = new ImageView(cocheAmarilloDer);
+        cocheView[5].setX(220);
         
-        Image coche8 = new Image(getClass().getResourceAsStream("/images/Coche_amarillo_der.png"));
-        ImageView coche8View = new ImageView(coche8);
-        coche8View.setX(0); 
-        coche8View.setY(posicionFila1Coches);   
-        paneRoot.getChildren().add(coche8View);
-            //Segunda fila
-        Image coche9 = new Image(getClass().getResourceAsStream("/images/Coche_amarillo_izq.png"));
-        ImageView coche9View = new ImageView(coche9);
-        coche9View.setX(710); 
-        coche9View.setY(posicionFila2Coches);   
-        paneRoot.getChildren().add(coche9View);
+        cocheView[6] = new ImageView(cocheRojoDer);
+        cocheView[6].setX(110);
         
-        Image coche10 = new Image(getClass().getResourceAsStream("/images/Coche_rojo_izq.png"));
-        ImageView coche10View = new ImageView(coche10);
-        coche10View.setX(600); 
-        coche10View.setY(posicionFila2Coches);   
-        paneRoot.getChildren().add(coche10View);
+        cocheView[7] = new ImageView(cocheRojoDer);
+        cocheView[7].setX(0);
+        //Bucle para los primeros 7 coches para que tengan la misma "Y"
+        // y aparezcan en pantalla
+        for(int i=0; i<8; i++) {
+            cocheView[i].setY(POSICION_FILA_1_COCHES);
+            paneRoot.getChildren().add(cocheView[i]);
+        }
         
-        Image coche11 = new Image(getClass().getResourceAsStream("/images/Coche_amarillo_izq.png"));
-        ImageView coche11View = new ImageView(coche11);
-        coche11View.setX(490); 
-        coche11View.setY(posicionFila2Coches);   
-        paneRoot.getChildren().add(coche11View);
+        cocheView[8] = new ImageView(cocheRojoIzq);
+        cocheView[8].setX(710);
         
-        Image coche12 = new Image(getClass().getResourceAsStream("/images/Coche_rojo_izq.png"));
-        ImageView coche12View = new ImageView(coche12);
-        coche12View.setX(380); 
-        coche12View.setY(posicionFila2Coches);   
-        paneRoot.getChildren().add(coche12View);
+        cocheView[9] = new ImageView(cocheAmarilloIzq);
+        cocheView[9].setX(600);
         
-        Image coche13 = new Image(getClass().getResourceAsStream("/images/Coche_amarillo_izq.png"));
-        ImageView coche13View = new ImageView(coche13);
-        coche13View.setX(270); 
-        coche13View.setY(posicionFila2Coches);   
-        paneRoot.getChildren().add(coche13View);
+        cocheView[10] = new ImageView(cocheAmarilloIzq);
+        cocheView[10].setX(490);
         
-        Image coche14 = new Image(getClass().getResourceAsStream("/images/Coche_amarillo_izq.png"));
-        ImageView coche14View = new ImageView(coche14);
-        coche14View.setX(160); 
-        coche14View.setY(posicionFila2Coches);   
-        paneRoot.getChildren().add(coche14View);
+        cocheView[11] = new ImageView(cocheAmarilloIzq);
+        cocheView[11].setX(380);
         
-        Image coche15 = new Image(getClass().getResourceAsStream("/images/Coche_rojo_izq.png"));
-        ImageView coche15View = new ImageView(coche15);
-        coche15View.setX(50); 
-        coche15View.setY(posicionFila2Coches);   
-        paneRoot.getChildren().add(coche15View);
+        cocheView[12] = new ImageView(cocheRojoIzq);
+        cocheView[12].setX(270);
         
+        cocheView[13] = new ImageView(cocheAmarilloIzq);
+        cocheView[13].setX(160);
+        
+        cocheView[14] = new ImageView(cocheRojoIzq);
+        cocheView[14].setX(50);
         //CAMBIAR AL SER EL ULTIMO POSICIÓN INICIAL PUEDE CAMBIAR
-        Image coche16 = new Image(getClass().getResourceAsStream("/images/Coche_rojo_izq.png"));
-        ImageView coche16View = new ImageView(coche16);
-        coche16View.setX(-60); 
-        coche16View.setY(posicionFila2Coches);   
-        paneRoot.getChildren().add(coche16View);
+        cocheView[15] = new ImageView(cocheAmarilloIzq);
+        cocheView[15].setX(-60);
+        //Bucle para los ultimos 8 coches para que tengan la misma "Y"
+        // y aparezcan en pantalla
+        for(int i=8; i<16; i++) {
+            cocheView[i].setY(POSICION_FILA_2_COCHES);
+            paneRoot.getChildren().add(cocheView[i]);
+        }
         
         //Troncos
-        Image tronco1 = new Image(getClass().getResourceAsStream("/images/tronco_.jpg"));
-        ImageView tronco1View = new ImageView(tronco1);
-        tronco1View.setX(50); 
-        tronco1View.setY(posicionFila1Tronco);   
-        paneRoot.getChildren().add(tronco1View);
+        //Unica imagen del objeto tronco
+        Image tronco = new Image(getClass().getResourceAsStream("/images/tronco_.jpg"));
+        //Array de los troncos
+        ImageView troncoView[] = new ImageView[11];
+        //Primera fila
+        troncoView[0] = new ImageView(tronco);
+        troncoView[0].setX(50);
         
-        Image tronco2 = new Image(getClass().getResourceAsStream("/images/tronco_.jpg"));
-        ImageView tronco2View = new ImageView(tronco2);
-        tronco2View.setX(250); 
-        tronco2View.setY(posicionFila1Tronco);   
-        paneRoot.getChildren().add(tronco2View);
+        troncoView[1] = new ImageView(tronco);
+        troncoView[1].setX(250);
         
-        Image tronco3 = new Image(getClass().getResourceAsStream("/images/tronco_.jpg"));
-        ImageView tronco3View = new ImageView(tronco3);
-        tronco3View.setX(450); 
-        tronco3View.setY(posicionFila1Tronco);   
-        paneRoot.getChildren().add(tronco3View);
+        troncoView[2] = new ImageView(tronco);
+        troncoView[2].setX(450);
         
-        Image tronco4 = new Image(getClass().getResourceAsStream("/images/tronco_.jpg"));
-        ImageView tronco4View = new ImageView(tronco4);
-        tronco4View.setX(650); 
-        tronco4View.setY(posicionFila1Tronco);   
-        paneRoot.getChildren().add(tronco4View);
-        
-        Image tronco5 = new Image(getClass().getResourceAsStream("/images/tronco_.jpg"));
-        ImageView tronco5View = new ImageView(tronco5);
-        tronco5View.setX(150); 
-        tronco5View.setY(posicionFila2Tronco);   
-        paneRoot.getChildren().add(tronco5View);
-        
-        Image tronco6 = new Image(getClass().getResourceAsStream("/images/tronco_.jpg"));
-        ImageView tronco6View = new ImageView(tronco6);
-        tronco6View.setX(350); 
-        tronco6View.setY(posicionFila2Tronco);   
-        paneRoot.getChildren().add(tronco6View);
-        
-        Image tronco7 = new Image(getClass().getResourceAsStream("/images/tronco_.jpg"));
-        ImageView tronco7View = new ImageView(tronco7);
-        tronco7View.setX(550); 
-        tronco7View.setY(posicionFila2Tronco);   
-        paneRoot.getChildren().add(tronco7View);
-        
-        Image tronco8 = new Image(getClass().getResourceAsStream("/images/tronco_.jpg"));
-        ImageView tronco8View = new ImageView(tronco8);
-        tronco8View.setX(750); 
-        tronco8View.setY(posicionFila2Tronco);   
-        paneRoot.getChildren().add(tronco8View);
-        
+        troncoView[3] = new ImageView(tronco);
+        troncoView[3].setX(650);
         //POSICIÓN FINAL DESPUES TELETRANSPORTAR A -150
-        Image tronco9 = new Image(getClass().getResourceAsStream("/images/tronco_.jpg"));
-        ImageView tronco9View = new ImageView(tronco9);
-        tronco9View.setX(850); 
-        tronco9View.setY(posicionFila2Tronco);   
-        paneRoot.getChildren().add(tronco9View);
+        troncoView[4] = new ImageView(tronco);
+        troncoView[4].setX(850);
+        //Bucle para los primeros 5 troncos para que tengan la misma "Y"
+        // y aparezcan en pantalla
+        for(int i=0; i<5; i++) {
+            troncoView[i].setY(POSICION_FILA_1_TRONCOS);
+            paneRoot.getChildren().add(troncoView[i]);
+        }
         
-        Image tronco10 = new Image(getClass().getResourceAsStream("/images/tronco_.jpg"));
-        ImageView tronco10View = new ImageView(tronco10);
-        tronco10View.setX(-50); 
-        tronco10View.setY(posicionFila2Tronco);   
-        paneRoot.getChildren().add(tronco10View);
+        //Segunda fila
+        troncoView[5] = new ImageView(tronco);
+        troncoView[5].setX(150);
         
-        Image nenufar1 = new Image(getClass().getResourceAsStream("/images/Nenufar.png"));
-        ImageView nenufar1View = new ImageView(nenufar1);
-        nenufar1View.setX(565); 
-        nenufar1View.setY(posicionFila1Nenufar);   
-        paneRoot.getChildren().add(nenufar1View);
+        troncoView[6] = new ImageView(tronco);
+        troncoView[6].setX(350);
         
-        Image nenufar2 = new Image(getClass().getResourceAsStream("/images/Nenufar.png"));
-        ImageView nenufar2View = new ImageView(nenufar2);
-        nenufar2View.setX(200); 
-        nenufar2View.setY(posicionFila2Nenufar);   
-        paneRoot.getChildren().add(nenufar2View);
+        troncoView[7] = new ImageView(tronco);
+        troncoView[7].setX(550);
         
-        /*Image nenufar3 = new Image(getClass().getResourceAsStream("/images/Nenufar.png"));
+        troncoView[8] = new ImageView(tronco);
+        troncoView[8].setX(750);
+        
+        troncoView[9] = new ImageView(tronco);
+        troncoView[9].setX(-50);
+        //Bucle para los ultimos 5 troncos para que tengan la misma "Y"
+        // y aparezcan en pantalla
+        for(int i=5; i<10; i++) {
+            troncoView[i].setY(POSICION_FILA_2_TRONCOS);
+            paneRoot.getChildren().add(troncoView[i]);
+        }
+        
+        //Nenúfares
+        //Única imagen del obejto nenufar
+        Image nenufar = new Image(getClass().getResourceAsStream("/images/Nenufar.png"));
+        //Array de los nenúfares
+        ImageView nenufarView[] = new ImageView[31];
+        //Primera fila
+        nenufarView[0] = new ImageView(nenufar);
+        nenufarView[0].setX(565);
+        
+        nenufarView[1] = new ImageView(nenufar);
+        nenufarView[1].setX(595);
+        
+        nenufarView[2] = new ImageView(nenufar);
+        nenufarView[2].setX(765);
+        
+        nenufarView[3] = new ImageView(nenufar);
+        nenufarView[3].setX(795);
+        
+        nenufarView[4] = new ImageView(nenufar);
+        nenufarView[4].setX(365);
+        
+        nenufarView[5] = new ImageView(nenufar);
+        nenufarView[5].setX(395);
+        
+        nenufarView[6] = new ImageView(nenufar);
+        nenufarView[6].setX(195);
+        
+        nenufarView[7] = new ImageView(nenufar);
+        nenufarView[7].setX(165);
+        
+        nenufarView[8] = new ImageView(nenufar);
+        nenufarView[8].setX(-5);
+        
+        nenufarView[9] = new ImageView(nenufar);
+        nenufarView[9].setX(-35);
+        //Bucle para mostrar los primeros 9 nenúfares con la misma "Y"
+        for(int i=0; i<10; i++) {
+            nenufarView[i].setY(POSICION_FILA_1_NENUFARES);
+            paneRoot.getChildren().add(nenufarView[i]);
+        }
+        
+        /*Image nenufar2 = new Image(getClass().getResourceAsStream("/images/Nenufar.png"));
+        ImageView nenufar3View = new ImageView(nenufar2);
+        nenufar3View.setX(200); 
+        nenufar3View.setY(93.5);   /*Image nenufar3 = new Image(getClass().getResourceAsStream("/images/Nenufar.png"));
         ImageView nenufar3View = new ImageView(nenufar3);
         nenufar3View.setX(200); 
         nenufar3View.setY(93.5);   
         paneRoot.getChildren().add(nenufar3View);*/ //IMAGEN PARA MIRAR LA POSICION FINAL DE LA RANA
         //HAY QUE CAMBIAR EL FONDO
         
-        Image nenufar3 = new Image(getClass().getResourceAsStream("/images/Nenufar.png"));
-        ImageView nenufar3View = new ImageView(nenufar3);
-        nenufar3View.setX(595); 
-        nenufar3View.setY(posicionFila1Nenufar);
-        paneRoot.getChildren().add(nenufar3View);
+        //Segunda fila
+        nenufarView[10] = new ImageView(nenufar);
+        nenufarView[10].setX(565);
         
-        Image nenufar4 = new Image(getClass().getResourceAsStream("/images/Nenufar.png"));
-        ImageView nenufar4View = new ImageView(nenufar4);
-        nenufar4View.setX(765); 
-        nenufar4View.setY(posicionFila1Nenufar);
-        paneRoot.getChildren().add(nenufar4View);
+        nenufarView[11] = new ImageView(nenufar);
+        nenufarView[11].setX(595);
         
-        Image nenufar5 = new Image(getClass().getResourceAsStream("/images/Nenufar.png"));
-        ImageView nenufar5View = new ImageView(nenufar5);
-        nenufar5View.setX(795); 
-        nenufar5View.setY(posicionFila1Nenufar);
-        paneRoot.getChildren().add(nenufar5View);
+        nenufarView[12] = new ImageView(nenufar);
+        nenufarView[12].setX(765);
+        
+        nenufarView[13] = new ImageView(nenufar);
+        nenufarView[13].setX(795);
+        
+        nenufarView[14] = new ImageView(nenufar);
+        nenufarView[14].setX(365);
+        
+        nenufarView[15] = new ImageView(nenufar);
+        nenufarView[15].setX(395);
+        
+        nenufarView[16] = new ImageView(nenufar);
+        nenufarView[16].setX(195);
+        
+        nenufarView[17] = new ImageView(nenufar);
+        nenufarView[17].setX(165);
+        
+        nenufarView[18] = new ImageView(nenufar);
+        nenufarView[18].setX(-5);
+        
+        nenufarView[19] = new ImageView(nenufar);
+        nenufarView[19].setX(-35);
+        //Bucle para mostrar los nenufares 10-19 con la misma "Y"
+        for(int i=10; i<20; i++) {
+            nenufarView[i].setY(POSICION_FILA_2_NENUFARES);
+            paneRoot.getChildren().add(nenufarView[i]);
+        }
+        //Tercera fila
+        nenufarView[20] = new ImageView(nenufar);
+        nenufarView[20].setX(565);
+        
+        nenufarView[21] = new ImageView(nenufar);
+        nenufarView[21].setX(595);
+        
+        nenufarView[22] = new ImageView(nenufar);
+        nenufarView[22].setX(765);
+        
+        nenufarView[23] = new ImageView(nenufar);
+        nenufarView[23].setX(795);
+        
+        nenufarView[24] = new ImageView(nenufar);
+        nenufarView[24].setX(365);
+        
+        nenufarView[25] = new ImageView(nenufar);
+        nenufarView[25].setX(395);
+        
+        nenufarView[26] = new ImageView(nenufar);
+        nenufarView[26].setX(195);
+        
+        nenufarView[27] = new ImageView(nenufar);
+        nenufarView[27].setX(165);
+        
+        nenufarView[28] = new ImageView(nenufar);
+        nenufarView[28].setX(-5);
+        
+        nenufarView[29] = new ImageView(nenufar);
+        nenufarView[29].setX(-35);
+        //Mostrar los ultimos 10 nenúfares con la misma "Y"
+        for(int i=20; i<30; i++) {
+            nenufarView[i].setY(POSICION_FILA_3_NENUFARES);
+            paneRoot.getChildren().add(nenufarView[i]);
+        }
         
         VBox paneInfo = new VBox();
         paneInfo.setPrefWidth(scene.getWidth());
@@ -394,6 +438,17 @@ public class App extends Application {
         paneInfo.getChildren().add(labelGameover);
         paneRoot.getChildren().add(paneInfo);
         
+        //Movimiento de la rana
+        scene.setOnKeyPressed((KeyEvent event) -> {
+            switch(event.getCode()) {
+                case UP:
+                    stickCurrentSpeed = -6;
+                    break;
+                case DOWN:
+                    stickCurrentSpeed = 6;
+                    break;
+            }
+        });
     }
 
     public static void main(String[] args) {
