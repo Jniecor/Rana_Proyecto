@@ -439,16 +439,7 @@ public class App extends Application {
         paneRoot.getChildren().add(paneInfo);
         
         //Movimiento de la rana
-        scene.setOnKeyPressed((KeyEvent event) -> {
-            switch(event.getCode()) {
-                case UP:
-                    stickCurrentSpeed = -6;
-                    break;
-                case DOWN:
-                    stickCurrentSpeed = 6;
-                    break;
-            }
-        });
+
     }
 
     public static void main(String[] args) {
