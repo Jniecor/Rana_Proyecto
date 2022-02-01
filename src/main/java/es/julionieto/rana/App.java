@@ -60,12 +60,22 @@ public class App extends Application {
     
     //-----<SEGUNDA PARTE>-----//
     //Troncos (Río)
+    int velocidadTroncos = 1;
     //Fila 1 (Abajo)
     final double POSICION_FILA_1_TRONCOS = 237.5;
-    
+    int posicionTronco0 = 50;
+    int posicionTronco1 = 250;
+    int posicionTronco2 = 450;
+    int posicionTronco3 = 650;
+    int posicionTronco4 = 850;
+
     //Fila 2 (Arriba)
     final double POSICION_FILA_2_TRONCOS = 165.5;
-    
+    int posicionTronco5 = 150;
+    int posicionTronco6 = 350;
+    int posicionTronco7 = 550;
+    int posicionTronco8 = 750;
+    int posicionTronco9 = -50;
     //Nenúfares (Río)
     //Fila 1 (Abajo)
     final double POSICION_FILA_1_NENUFARES = 273.5;
@@ -278,19 +288,19 @@ public class App extends Application {
         ImageView troncoView[] = new ImageView[11];
         //Primera fila
         troncoView[0] = new ImageView(tronco);
-        troncoView[0].setX(50);
+        troncoView[0].setX(posicionTronco0);
         
         troncoView[1] = new ImageView(tronco);
-        troncoView[1].setX(250);
+        troncoView[1].setX(posicionTronco1);
         
         troncoView[2] = new ImageView(tronco);
-        troncoView[2].setX(450);
+        troncoView[2].setX(posicionTronco2);
         
         troncoView[3] = new ImageView(tronco);
-        troncoView[3].setX(650);
+        troncoView[3].setX(posicionTronco3);
         //POSICIÓN FINAL DESPUES TELETRANSPORTAR A -150
         troncoView[4] = new ImageView(tronco);
-        troncoView[4].setX(850);
+        troncoView[4].setX(posicionTronco4);
         //Bucle para los primeros 5 troncos para que tengan la misma "Y"
         // y aparezcan en pantalla
         for(int i=0; i<5; i++) {
@@ -300,19 +310,19 @@ public class App extends Application {
         
         //Segunda fila
         troncoView[5] = new ImageView(tronco);
-        troncoView[5].setX(150);
+        troncoView[5].setX(posicionTronco5);
         
         troncoView[6] = new ImageView(tronco);
-        troncoView[6].setX(350);
+        troncoView[6].setX(posicionTronco6);
         
         troncoView[7] = new ImageView(tronco);
-        troncoView[7].setX(550);
+        troncoView[7].setX(posicionTronco7);
         
         troncoView[8] = new ImageView(tronco);
-        troncoView[8].setX(750);
+        troncoView[8].setX(posicionTronco8);
         
         troncoView[9] = new ImageView(tronco);
-        troncoView[9].setX(-50);
+        troncoView[9].setX(posicionTronco9);
         //Bucle para los ultimos 5 troncos para que tengan la misma "Y"
         // y aparezcan en pantalla
         for(int i=5; i<10; i++) {
@@ -466,10 +476,10 @@ public class App extends Application {
         scene.setOnKeyPressed((KeyEvent event) -> {
             switch(event.getCode()) {
                 case UP:
-                    posYPersonaje -= 32;
+                    posYPersonaje -= 35;
                     break;
                 case DOWN:
-                    posYPersonaje += 32;
+                    posYPersonaje += 35;
                     break;
             }
         });
@@ -479,8 +489,8 @@ public class App extends Application {
         });
         
         Timeline animationGame = new Timeline(
-            new KeyFrame(Duration.seconds(0.017),(ActionEvent ae) -> {
-                //Movimiento coche (Fila 1)
+            new KeyFrame(Duration.seconds(0.015),(ActionEvent ae) -> {
+                //Movimiento coches
                 posicionCoche0 += velCocheDer;
                 posicionCoche1 += velCocheDer;
                 posicionCoche2 += velCocheDer;
@@ -579,11 +589,75 @@ public class App extends Application {
                     posicionCoche14 = 825;
                     cocheView[14].setX(posicionCoche14);
                 }
-                if (posicionCoche14 <= -55){
-                    posicionCoche14 = 825;
-                    cocheView[14].setX(posicionCoche14);
+                if (posicionCoche15 <= -55){
+                    posicionCoche15 = 825;
+                    cocheView[15].setX(posicionCoche15);
                 }
-                    
+                
+                //Movimientos troncos
+                posicionTronco0 += velocidadTroncos;
+                posicionTronco1 += velocidadTroncos;
+                posicionTronco2 += velocidadTroncos;
+                posicionTronco3 += velocidadTroncos;
+                posicionTronco4 += velocidadTroncos;
+                posicionTronco5 += velocidadTroncos;
+                posicionTronco6 += velocidadTroncos;
+                posicionTronco7 += velocidadTroncos;
+                posicionTronco8 += velocidadTroncos;
+                posicionTronco9 += velocidadTroncos;
+
+                troncoView[0].setX(posicionTronco0);                
+                troncoView[1].setX(posicionTronco1);                
+                troncoView[2].setX(posicionTronco2);                
+                troncoView[3].setX(posicionTronco3);                
+                troncoView[4].setX(posicionTronco4);                
+                troncoView[5].setX(posicionTronco5);                
+                troncoView[6].setX(posicionTronco6);                
+                troncoView[7].setX(posicionTronco7);                
+                troncoView[8].setX(posicionTronco8);                
+                troncoView[9].setX(posicionTronco9);
+
+                if (posicionTronco0 >= 950){
+                    posicionTronco0 = -150;
+                    troncoView[0].setX(posicionCoche0);
+                }
+                if (posicionTronco1 >= 950){
+                    posicionTronco1 = -150;
+                    troncoView[1].setX(posicionCoche1);
+                }
+                if (posicionTronco2 >= 950){
+                    posicionTronco2 = -150;
+                    troncoView[2].setX(posicionCoche2);
+                }
+                if (posicionTronco3 >= 950){
+                    posicionTronco3 = -150;
+                    troncoView[3].setX(posicionCoche3);
+                }
+                if (posicionTronco4 >= 950){
+                    posicionTronco4 = -150;
+                    troncoView[4].setX(posicionCoche4);
+                }
+                if (posicionTronco5 >= 950){
+                    posicionTronco5 = -150;
+                    troncoView[5].setX(posicionCoche5);
+                }
+                if (posicionTronco6 >= 950){
+                    posicionTronco6 = -150;
+                    troncoView[6].setX(posicionCoche6);
+                }
+                if (posicionTronco7 >= 950){
+                    posicionTronco7 = -150;
+                    troncoView[7].setX(posicionCoche7);
+                }
+                if (posicionTronco8 >= 950){
+                    posicionTronco8 = -150;
+                    troncoView[8].setX(posicionCoche8);
+                }
+                if (posicionTronco9 >= 950){
+                    posicionTronco9 = -150;
+                    troncoView[9].setX(posicionCoche9);
+                }
+                groupPersonaje.setLayoutY(posYPersonaje);
             })
         );
         animationGame.setCycleCount(Timeline.INDEFINITE);
