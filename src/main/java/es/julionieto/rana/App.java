@@ -1,7 +1,10 @@
 package es.julionieto.rana;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -12,9 +15,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 
@@ -25,14 +30,33 @@ public class App extends Application {
     double posXPersonaje = 375;
     double posYPersonaje = 570;
     
+    
     //-----<OBEJTOS>-----//
     //-----<PRIMERA PARTE>-----//
-    //Coches (Autopista)    
+    //Coches (Autopista)
+    int velCocheDer = 2;    
     //Fila 1 (abajo)
     final double POSICION_FILA_1_COCHES = 456.5;
+    int posicionCoche0 = 770;
+    int posicionCoche1 = 660;
+    int posicionCoche2 = 550;
+    int posicionCoche3 = 440;
+    int posicionCoche4 = 330;
+    int posicionCoche5 = 220;
+    int posicionCoche6 = 110;
+    int posicionCoche7 = 0;
+    
     
     //Fila 2 (Arriba)
     final double POSICION_FILA_2_COCHES = 383.5;
+    int posicionCoche8 = 710;
+    int posicionCoche9 = 600;
+    int posicionCoche10 = 490;
+    int posicionCoche11 = 380;
+    int posicionCoche12 = 270;
+    int posicionCoche13 = 160;
+    int posicionCoche14 = 50;
+    int posicionCoche15 = -60;
     
     //-----<SEGUNDA PARTE>-----//
     //Troncos (Río)
@@ -186,60 +210,60 @@ public class App extends Application {
         
         //Array de los coches
         ImageView cocheView[] = new ImageView[16];
-        //Primera fila
+        //Primera fila        
         cocheView[0] = new ImageView(cocheRojoDer);
-        cocheView[0].setX(770);
+        cocheView[0].setX(posicionCoche0);
         
         cocheView[1] = new ImageView(cocheAmarilloDer);
-        cocheView[1].setX(660);
+        cocheView[1].setX(posicionCoche1);
         
         cocheView[2] = new ImageView(cocheRojoDer);
-        cocheView[2].setX(550);
+        cocheView[2].setX(posicionCoche2);
         
         cocheView[3] = new ImageView(cocheRojoDer);
-        cocheView[3].setX(440);
+        cocheView[3].setX(posicionCoche3);
         
         cocheView[4] = new ImageView(cocheAmarilloDer);
-        cocheView[4].setX(330);
+        cocheView[4].setX(posicionCoche4);
         
         cocheView[5] = new ImageView(cocheAmarilloDer);
-        cocheView[5].setX(220);
+        cocheView[5].setX(posicionCoche5);
         
         cocheView[6] = new ImageView(cocheRojoDer);
-        cocheView[6].setX(110);
+        cocheView[6].setX(posicionCoche6);
         
         cocheView[7] = new ImageView(cocheRojoDer);
-        cocheView[7].setX(0);
+        cocheView[7].setX(posicionCoche7);
         //Bucle para los primeros 7 coches para que tengan la misma "Y"
         // y aparezcan en pantalla
         for(int i=0; i<8; i++) {
             cocheView[i].setY(POSICION_FILA_1_COCHES);
             paneRoot.getChildren().add(cocheView[i]);
         }
-        
+        //Segunda fila        
         cocheView[8] = new ImageView(cocheRojoIzq);
-        cocheView[8].setX(710);
+        cocheView[8].setX(posicionCoche8);
         
         cocheView[9] = new ImageView(cocheAmarilloIzq);
-        cocheView[9].setX(600);
+        cocheView[9].setX(posicionCoche9);
         
         cocheView[10] = new ImageView(cocheAmarilloIzq);
-        cocheView[10].setX(490);
+        cocheView[10].setX(posicionCoche10);
         
         cocheView[11] = new ImageView(cocheAmarilloIzq);
-        cocheView[11].setX(380);
+        cocheView[11].setX(posicionCoche11);
         
         cocheView[12] = new ImageView(cocheRojoIzq);
-        cocheView[12].setX(270);
+        cocheView[12].setX(posicionCoche12);
         
         cocheView[13] = new ImageView(cocheAmarilloIzq);
-        cocheView[13].setX(160);
+        cocheView[13].setX(posicionCoche13);
         
         cocheView[14] = new ImageView(cocheRojoIzq);
-        cocheView[14].setX(50);
+        cocheView[14].setX(posicionCoche14);
         //CAMBIAR AL SER EL ULTIMO POSICIÓN INICIAL PUEDE CAMBIAR
         cocheView[15] = new ImageView(cocheAmarilloIzq);
-        cocheView[15].setX(-60);
+        cocheView[15].setX(posicionCoche15);
         //Bucle para los ultimos 8 coches para que tengan la misma "Y"
         // y aparezcan en pantalla
         for(int i=8; i<16; i++) {
@@ -439,11 +463,138 @@ public class App extends Application {
         paneRoot.getChildren().add(paneInfo);
         
         //Movimiento de la rana
+        scene.setOnKeyPressed((KeyEvent event) -> {
+            switch(event.getCode()) {
+                case UP:
+                    posYPersonaje -= 32;
+                    break;
+                case DOWN:
+                    posYPersonaje += 32;
+                    break;
+            }
+        });
+        
+        scene.setOnKeyReleased((KeyEvent event) -> {
+            posYPersonaje = posYPersonaje;
+        });
+        
+        Timeline animationGame = new Timeline(
+            new KeyFrame(Duration.seconds(0.017),(ActionEvent ae) -> {
+                //Movimiento coche (Fila 1)
+                posicionCoche0 += velCocheDer;
+                posicionCoche1 += velCocheDer;
+                posicionCoche2 += velCocheDer;
+                posicionCoche3 += velCocheDer;
+                posicionCoche4 += velCocheDer;
+                posicionCoche5 += velCocheDer;
+                posicionCoche6 += velCocheDer;
+                posicionCoche7 += velCocheDer;
+                posicionCoche8 -= velCocheDer;
+                posicionCoche9 -= velCocheDer;
+                posicionCoche10 -= velCocheDer;
+                posicionCoche11 -= velCocheDer;
+                posicionCoche12 -= velCocheDer;
+                posicionCoche13 -= velCocheDer;
+                posicionCoche14 -= velCocheDer;
+                posicionCoche15 -= velCocheDer;
+
+                cocheView[0].setX(posicionCoche0);               
+                cocheView[1].setX(posicionCoche1);                
+                cocheView[2].setX(posicionCoche2);                
+                cocheView[3].setX(posicionCoche3);                
+                cocheView[4].setX(posicionCoche4);                
+                cocheView[5].setX(posicionCoche5);                
+                cocheView[6].setX(posicionCoche6); 
+                cocheView[7].setX(posicionCoche7);
+                cocheView[8].setX(posicionCoche8);               
+                cocheView[9].setX(posicionCoche9);                
+                cocheView[10].setX(posicionCoche10);                
+                cocheView[11].setX(posicionCoche11);                
+                cocheView[12].setX(posicionCoche12);                
+                cocheView[13].setX(posicionCoche13);                
+                cocheView[14].setX(posicionCoche14); 
+                cocheView[15].setX(posicionCoche15);
+                
+                if (posicionCoche0 >= 825){
+                    posicionCoche0 = -55;
+                    cocheView[0].setX(posicionCoche0);
+                }
+                if (posicionCoche1 >= 825){
+                    posicionCoche1 = -55;
+                    cocheView[1].setX(posicionCoche1);
+                }
+                if (posicionCoche2 >= 825){
+                    posicionCoche2 = -55;
+                    cocheView[2].setX(posicionCoche2);
+                }
+                if (posicionCoche3 >= 825){
+                    posicionCoche3 = -55;
+                    cocheView[3].setX(posicionCoche3);
+                }
+                if (posicionCoche4 >= 825){
+                    posicionCoche4 = -55;
+                    cocheView[4].setX(posicionCoche4);
+                }
+                if (posicionCoche5 >= 825){
+                    posicionCoche5 = -55;
+                    cocheView[5].setX(posicionCoche5);
+                }
+                if (posicionCoche6 >= 825){
+                    posicionCoche6 = -55;
+                    cocheView[6].setX(posicionCoche6);
+                }
+                if (posicionCoche6 >= 825){
+                    posicionCoche6 = -55;
+                    cocheView[6].setX(posicionCoche6);
+                }
+                if (posicionCoche7 >= 825){
+                    posicionCoche7 = -55;
+                    cocheView[7].setX(posicionCoche7);
+                }
+                if (posicionCoche8 <= -55){
+                    posicionCoche8 = 825;
+                    cocheView[8].setX(posicionCoche8);
+                }
+                if (posicionCoche9 <= -55){
+                    posicionCoche9 = 825;
+                    cocheView[9].setX(posicionCoche9);
+                }
+                if (posicionCoche10 <= -55){
+                    posicionCoche10 = 825;
+                    cocheView[10].setX(posicionCoche10);
+                }
+                if (posicionCoche11 <= -55){
+                    posicionCoche11 = 825;
+                    cocheView[11].setX(posicionCoche11);
+                }
+                if (posicionCoche12 <= -55){
+                    posicionCoche12 = 825;
+                    cocheView[12].setX(posicionCoche12);
+                }
+                if (posicionCoche13 <= -55){
+                    posicionCoche13 = 825;
+                    cocheView[13].setX(posicionCoche13);
+                }
+                if (posicionCoche14 <= -55){
+                    posicionCoche14 = 825;
+                    cocheView[14].setX(posicionCoche14);
+                }
+                if (posicionCoche14 <= -55){
+                    posicionCoche14 = 825;
+                    cocheView[14].setX(posicionCoche14);
+                }
+                    
+            })
+        );
+        animationGame.setCycleCount(Timeline.INDEFINITE);
+        animationGame.play();
 
     }
 
     public static void main(String[] args) {
         launch();
     }
+    
+    
 
 }
