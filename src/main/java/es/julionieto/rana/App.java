@@ -34,49 +34,24 @@ public class App extends Application {
     //-----<OBEJTOS>-----//
     //-----<PRIMERA PARTE>-----//
     //Coches (Autopista)
-    int velCocheDer = 2;    
+    int velCoche = 2;    
     //Fila 1 (abajo)
-    final double POSICION_FILA_1_COCHES = 456.5;
-    int posicionCoche0 = 770;
-    int posicionCoche1 = 660;
-    int posicionCoche2 = 550;
-    int posicionCoche3 = 440;
-    int posicionCoche4 = 330;
-    int posicionCoche5 = 220;
-    int posicionCoche6 = 110;
-    int posicionCoche7 = 0;
-    
+    final double POSICION_FILA_1_COCHES = 456.5;     
     
     //Fila 2 (Arriba)
     final double POSICION_FILA_2_COCHES = 383.5;
-    int posicionCoche8 = 710;
-    int posicionCoche9 = 600;
-    int posicionCoche10 = 490;
-    int posicionCoche11 = 380;
-    int posicionCoche12 = 270;
-    int posicionCoche13 = 160;
-    int posicionCoche14 = 50;
-    int posicionCoche15 = -60;
     
     //-----<SEGUNDA PARTE>-----//
     //Troncos (Río)
     int velocidadTroncos = 1;
     //Fila 1 (Abajo)
     final double POSICION_FILA_1_TRONCOS = 237.5;
-    int posicionTronco0 = 50;
-    int posicionTronco1 = 250;
-    int posicionTronco2 = 450;
-    int posicionTronco3 = 650;
-    int posicionTronco4 = 850;
 
     //Fila 2 (Arriba)
     final double POSICION_FILA_2_TRONCOS = 165.5;
-    int posicionTronco5 = 150;
-    int posicionTronco6 = 350;
-    int posicionTronco7 = 550;
-    int posicionTronco8 = 750;
-    int posicionTronco9 = -50;
+
     //Nenúfares (Río)
+    int velNenufar = 2;
     //Fila 1 (Abajo)
     final double POSICION_FILA_1_NENUFARES = 273.5;
     
@@ -220,30 +195,33 @@ public class App extends Application {
         
         //Array de los coches
         ImageView cocheView[] = new ImageView[16];
-        //Primera fila        
+        int posicionCocheInt[] = new int[16];
+        
+        //Primera fila
+        posicionCocheInt[0] = 770;
+        posicionCocheInt[1] = 660;
+        posicionCocheInt[2] = 550;
+        posicionCocheInt[3] = 440;
+        posicionCocheInt[4] = 330;
+        posicionCocheInt[5] = 220;
+        posicionCocheInt[6] = 110;
+        posicionCocheInt[7] = 0;     
+   
         cocheView[0] = new ImageView(cocheRojoDer);
-        cocheView[0].setX(posicionCoche0);
         
         cocheView[1] = new ImageView(cocheAmarilloDer);
-        cocheView[1].setX(posicionCoche1);
         
         cocheView[2] = new ImageView(cocheRojoDer);
-        cocheView[2].setX(posicionCoche2);
         
         cocheView[3] = new ImageView(cocheRojoDer);
-        cocheView[3].setX(posicionCoche3);
         
         cocheView[4] = new ImageView(cocheAmarilloDer);
-        cocheView[4].setX(posicionCoche4);
         
         cocheView[5] = new ImageView(cocheAmarilloDer);
-        cocheView[5].setX(posicionCoche5);
         
         cocheView[6] = new ImageView(cocheRojoDer);
-        cocheView[6].setX(posicionCoche6);
         
         cocheView[7] = new ImageView(cocheRojoDer);
-        cocheView[7].setX(posicionCoche7);
         //Bucle para los primeros 7 coches para que tengan la misma "Y"
         // y aparezcan en pantalla
         for(int i=0; i<8; i++) {
@@ -252,28 +230,28 @@ public class App extends Application {
         }
         //Segunda fila        
         cocheView[8] = new ImageView(cocheRojoIzq);
-        cocheView[8].setX(posicionCoche8);
+        posicionCocheInt[8] = 710;
+        posicionCocheInt[9] = 600;
+        posicionCocheInt[10] = 490;
+        posicionCocheInt[11] = 380;
+        posicionCocheInt[12] = 270;
+        posicionCocheInt[13] = 160;
+        posicionCocheInt[14] = 50;
+        posicionCocheInt[15] = -60;
         
         cocheView[9] = new ImageView(cocheAmarilloIzq);
-        cocheView[9].setX(posicionCoche9);
         
         cocheView[10] = new ImageView(cocheAmarilloIzq);
-        cocheView[10].setX(posicionCoche10);
         
         cocheView[11] = new ImageView(cocheAmarilloIzq);
-        cocheView[11].setX(posicionCoche11);
         
         cocheView[12] = new ImageView(cocheRojoIzq);
-        cocheView[12].setX(posicionCoche12);
         
         cocheView[13] = new ImageView(cocheAmarilloIzq);
-        cocheView[13].setX(posicionCoche13);
         
         cocheView[14] = new ImageView(cocheRojoIzq);
-        cocheView[14].setX(posicionCoche14);
         //CAMBIAR AL SER EL ULTIMO POSICIÓN INICIAL PUEDE CAMBIAR
         cocheView[15] = new ImageView(cocheAmarilloIzq);
-        cocheView[15].setX(posicionCoche15);
         //Bucle para los ultimos 8 coches para que tengan la misma "Y"
         // y aparezcan en pantalla
         for(int i=8; i<16; i++) {
@@ -286,21 +264,25 @@ public class App extends Application {
         Image tronco = new Image(getClass().getResourceAsStream("/images/tronco_.jpg"));
         //Array de los troncos
         ImageView troncoView[] = new ImageView[11];
+        int posicionTroncoInt[] = new int[10];
+        
         //Primera fila
+        posicionTroncoInt[0] = 50;
+        posicionTroncoInt[1] = 250;
+        posicionTroncoInt[2] = 450;
+        posicionTroncoInt[3] = 650;
+        posicionTroncoInt[4] = 850;
+
         troncoView[0] = new ImageView(tronco);
-        troncoView[0].setX(posicionTronco0);
         
         troncoView[1] = new ImageView(tronco);
-        troncoView[1].setX(posicionTronco1);
         
         troncoView[2] = new ImageView(tronco);
-        troncoView[2].setX(posicionTronco2);
         
         troncoView[3] = new ImageView(tronco);
-        troncoView[3].setX(posicionTronco3);
-        //POSICIÓN FINAL DESPUES TELETRANSPORTAR A -150
+
         troncoView[4] = new ImageView(tronco);
-        troncoView[4].setX(posicionTronco4);
+        
         //Bucle para los primeros 5 troncos para que tengan la misma "Y"
         // y aparezcan en pantalla
         for(int i=0; i<5; i++) {
@@ -309,20 +291,21 @@ public class App extends Application {
         }
         
         //Segunda fila
+        posicionTroncoInt[5] = 100;
+        posicionTroncoInt[6] = 350;
+        posicionTroncoInt[7] = 550;
+        posicionTroncoInt[8] = 750;
+        posicionTroncoInt[9] = -100;
+
         troncoView[5] = new ImageView(tronco);
-        troncoView[5].setX(posicionTronco5);
         
         troncoView[6] = new ImageView(tronco);
-        troncoView[6].setX(posicionTronco6);
         
         troncoView[7] = new ImageView(tronco);
-        troncoView[7].setX(posicionTronco7);
         
         troncoView[8] = new ImageView(tronco);
-        troncoView[8].setX(posicionTronco8);
         
         troncoView[9] = new ImageView(tronco);
-        troncoView[9].setX(posicionTronco9);
         //Bucle para los ultimos 5 troncos para que tengan la misma "Y"
         // y aparezcan en pantalla
         for(int i=5; i<10; i++) {
@@ -334,37 +317,39 @@ public class App extends Application {
         //Única imagen del obejto nenufar
         Image nenufar = new Image(getClass().getResourceAsStream("/images/Nenufar.png"));
         //Array de los nenúfares
-        ImageView nenufarView[] = new ImageView[31];
+        ImageView nenufarView[] = new ImageView[30];
+        int posicionNenufarInt[] = new int[30];
         //Primera fila
+        posicionNenufarInt[0] = 565;
+        posicionNenufarInt[1] = 595;
+        posicionNenufarInt[2] = 765;
+        posicionNenufarInt[3] = 795;
+        posicionNenufarInt[4] = 365;
+        posicionNenufarInt[5] = 395;
+        posicionNenufarInt[6] = 195;
+        posicionNenufarInt[7] = 165;
+        posicionNenufarInt[8] = -5;
+        posicionNenufarInt[9] = -35;
+
         nenufarView[0] = new ImageView(nenufar);
-        nenufarView[0].setX(565);
         
         nenufarView[1] = new ImageView(nenufar);
-        nenufarView[1].setX(595);
         
         nenufarView[2] = new ImageView(nenufar);
-        nenufarView[2].setX(765);
         
         nenufarView[3] = new ImageView(nenufar);
-        nenufarView[3].setX(795);
         
         nenufarView[4] = new ImageView(nenufar);
-        nenufarView[4].setX(365);
         
         nenufarView[5] = new ImageView(nenufar);
-        nenufarView[5].setX(395);
         
         nenufarView[6] = new ImageView(nenufar);
-        nenufarView[6].setX(195);
         
         nenufarView[7] = new ImageView(nenufar);
-        nenufarView[7].setX(165);
         
         nenufarView[8] = new ImageView(nenufar);
-        nenufarView[8].setX(-5);
         
         nenufarView[9] = new ImageView(nenufar);
-        nenufarView[9].setX(-35);
         //Bucle para mostrar los primeros 9 nenúfares con la misma "Y"
         for(int i=0; i<10; i++) {
             nenufarView[i].setY(POSICION_FILA_1_NENUFARES);
@@ -382,70 +367,72 @@ public class App extends Application {
         //HAY QUE CAMBIAR EL FONDO
         
         //Segunda fila
+        posicionNenufarInt[10] = 565;
+        posicionNenufarInt[11] = 595;
+        posicionNenufarInt[12] = 765;
+        posicionNenufarInt[13] = 795;
+        posicionNenufarInt[14] = 365;
+        posicionNenufarInt[15] = 395;
+        posicionNenufarInt[16] = 195;
+        posicionNenufarInt[17] = 165;
+        posicionNenufarInt[18] = -5;
+        posicionNenufarInt[19] = -35;
+
         nenufarView[10] = new ImageView(nenufar);
-        nenufarView[10].setX(565);
         
         nenufarView[11] = new ImageView(nenufar);
-        nenufarView[11].setX(595);
         
         nenufarView[12] = new ImageView(nenufar);
-        nenufarView[12].setX(765);
         
         nenufarView[13] = new ImageView(nenufar);
-        nenufarView[13].setX(795);
         
         nenufarView[14] = new ImageView(nenufar);
-        nenufarView[14].setX(365);
         
         nenufarView[15] = new ImageView(nenufar);
-        nenufarView[15].setX(395);
         
         nenufarView[16] = new ImageView(nenufar);
-        nenufarView[16].setX(195);
         
         nenufarView[17] = new ImageView(nenufar);
-        nenufarView[17].setX(165);
         
         nenufarView[18] = new ImageView(nenufar);
-        nenufarView[18].setX(-5);
         
         nenufarView[19] = new ImageView(nenufar);
-        nenufarView[19].setX(-35);
         //Bucle para mostrar los nenufares 10-19 con la misma "Y"
         for(int i=10; i<20; i++) {
             nenufarView[i].setY(POSICION_FILA_2_NENUFARES);
             paneRoot.getChildren().add(nenufarView[i]);
         }
         //Tercera fila
+        posicionNenufarInt[20] = 565;
+        posicionNenufarInt[21] = 595;
+        posicionNenufarInt[22] = 765;
+        posicionNenufarInt[23] = 795;
+        posicionNenufarInt[24] = 365;
+        posicionNenufarInt[25] = 395;
+        posicionNenufarInt[26] = 195;
+        posicionNenufarInt[27] = 165;
+        posicionNenufarInt[28] = -5;
+        posicionNenufarInt[29] = -35;
+
         nenufarView[20] = new ImageView(nenufar);
-        nenufarView[20].setX(565);
         
         nenufarView[21] = new ImageView(nenufar);
-        nenufarView[21].setX(595);
         
         nenufarView[22] = new ImageView(nenufar);
-        nenufarView[22].setX(765);
         
         nenufarView[23] = new ImageView(nenufar);
-        nenufarView[23].setX(795);
         
         nenufarView[24] = new ImageView(nenufar);
-        nenufarView[24].setX(365);
         
         nenufarView[25] = new ImageView(nenufar);
-        nenufarView[25].setX(395);
         
         nenufarView[26] = new ImageView(nenufar);
-        nenufarView[26].setX(195);
         
         nenufarView[27] = new ImageView(nenufar);
-        nenufarView[27].setX(165);
         
         nenufarView[28] = new ImageView(nenufar);
-        nenufarView[28].setX(-5);
         
         nenufarView[29] = new ImageView(nenufar);
-        nenufarView[29].setX(-35);
         //Mostrar los ultimos 10 nenúfares con la misma "Y"
         for(int i=20; i<30; i++) {
             nenufarView[i].setY(POSICION_FILA_3_NENUFARES);
@@ -476,10 +463,10 @@ public class App extends Application {
         scene.setOnKeyPressed((KeyEvent event) -> {
             switch(event.getCode()) {
                 case UP:
-                    posYPersonaje -= 35;
+                    posYPersonaje -= 10;
                     break;
                 case DOWN:
-                    posYPersonaje += 35;
+                    posYPersonaje += 10;
                     break;
             }
         });
@@ -487,176 +474,51 @@ public class App extends Application {
         scene.setOnKeyReleased((KeyEvent event) -> {
             posYPersonaje = posYPersonaje;
         });
+
+
         
         Timeline animationGame = new Timeline(
-            new KeyFrame(Duration.seconds(0.015),(ActionEvent ae) -> {
-                //Movimiento coches
-                posicionCoche0 += velCocheDer;
-                posicionCoche1 += velCocheDer;
-                posicionCoche2 += velCocheDer;
-                posicionCoche3 += velCocheDer;
-                posicionCoche4 += velCocheDer;
-                posicionCoche5 += velCocheDer;
-                posicionCoche6 += velCocheDer;
-                posicionCoche7 += velCocheDer;
-                posicionCoche8 -= velCocheDer;
-                posicionCoche9 -= velCocheDer;
-                posicionCoche10 -= velCocheDer;
-                posicionCoche11 -= velCocheDer;
-                posicionCoche12 -= velCocheDer;
-                posicionCoche13 -= velCocheDer;
-                posicionCoche14 -= velCocheDer;
-                posicionCoche15 -= velCocheDer;
+            new KeyFrame(Duration.seconds(0.017),(ActionEvent ae) -> {
 
-                cocheView[0].setX(posicionCoche0);               
-                cocheView[1].setX(posicionCoche1);                
-                cocheView[2].setX(posicionCoche2);                
-                cocheView[3].setX(posicionCoche3);                
-                cocheView[4].setX(posicionCoche4);                
-                cocheView[5].setX(posicionCoche5);                
-                cocheView[6].setX(posicionCoche6); 
-                cocheView[7].setX(posicionCoche7);
-                cocheView[8].setX(posicionCoche8);               
-                cocheView[9].setX(posicionCoche9);                
-                cocheView[10].setX(posicionCoche10);                
-                cocheView[11].setX(posicionCoche11);                
-                cocheView[12].setX(posicionCoche12);                
-                cocheView[13].setX(posicionCoche13);                
-                cocheView[14].setX(posicionCoche14); 
-                cocheView[15].setX(posicionCoche15);
-                
-                if (posicionCoche0 >= 825){
-                    posicionCoche0 = -55;
-                    cocheView[0].setX(posicionCoche0);
+                //Movimiento Coches
+                for(int i=0; i<8; i++){
+                    posicionCocheInt[i] += velCoche;
+                    cocheView[i].setX(posicionCocheInt[i]);
+                    if (posicionCocheInt[i] >= 825){
+                        posicionCocheInt[i] = -55;
+                        cocheView[i].setX(posicionCocheInt[i]);
+                    }
                 }
-                if (posicionCoche1 >= 825){
-                    posicionCoche1 = -55;
-                    cocheView[1].setX(posicionCoche1);
-                }
-                if (posicionCoche2 >= 825){
-                    posicionCoche2 = -55;
-                    cocheView[2].setX(posicionCoche2);
-                }
-                if (posicionCoche3 >= 825){
-                    posicionCoche3 = -55;
-                    cocheView[3].setX(posicionCoche3);
-                }
-                if (posicionCoche4 >= 825){
-                    posicionCoche4 = -55;
-                    cocheView[4].setX(posicionCoche4);
-                }
-                if (posicionCoche5 >= 825){
-                    posicionCoche5 = -55;
-                    cocheView[5].setX(posicionCoche5);
-                }
-                if (posicionCoche6 >= 825){
-                    posicionCoche6 = -55;
-                    cocheView[6].setX(posicionCoche6);
-                }
-                if (posicionCoche6 >= 825){
-                    posicionCoche6 = -55;
-                    cocheView[6].setX(posicionCoche6);
-                }
-                if (posicionCoche7 >= 825){
-                    posicionCoche7 = -55;
-                    cocheView[7].setX(posicionCoche7);
-                }
-                if (posicionCoche8 <= -55){
-                    posicionCoche8 = 825;
-                    cocheView[8].setX(posicionCoche8);
-                }
-                if (posicionCoche9 <= -55){
-                    posicionCoche9 = 825;
-                    cocheView[9].setX(posicionCoche9);
-                }
-                if (posicionCoche10 <= -55){
-                    posicionCoche10 = 825;
-                    cocheView[10].setX(posicionCoche10);
-                }
-                if (posicionCoche11 <= -55){
-                    posicionCoche11 = 825;
-                    cocheView[11].setX(posicionCoche11);
-                }
-                if (posicionCoche12 <= -55){
-                    posicionCoche12 = 825;
-                    cocheView[12].setX(posicionCoche12);
-                }
-                if (posicionCoche13 <= -55){
-                    posicionCoche13 = 825;
-                    cocheView[13].setX(posicionCoche13);
-                }
-                if (posicionCoche14 <= -55){
-                    posicionCoche14 = 825;
-                    cocheView[14].setX(posicionCoche14);
-                }
-                if (posicionCoche15 <= -55){
-                    posicionCoche15 = 825;
-                    cocheView[15].setX(posicionCoche15);
-                }
-                
-                //Movimientos troncos
-                posicionTronco0 += velocidadTroncos;
-                posicionTronco1 += velocidadTroncos;
-                posicionTronco2 += velocidadTroncos;
-                posicionTronco3 += velocidadTroncos;
-                posicionTronco4 += velocidadTroncos;
-                posicionTronco5 += velocidadTroncos;
-                posicionTronco6 += velocidadTroncos;
-                posicionTronco7 += velocidadTroncos;
-                posicionTronco8 += velocidadTroncos;
-                posicionTronco9 += velocidadTroncos;
 
-                troncoView[0].setX(posicionTronco0);                
-                troncoView[1].setX(posicionTronco1);                
-                troncoView[2].setX(posicionTronco2);                
-                troncoView[3].setX(posicionTronco3);                
-                troncoView[4].setX(posicionTronco4);                
-                troncoView[5].setX(posicionTronco5);                
-                troncoView[6].setX(posicionTronco6);                
-                troncoView[7].setX(posicionTronco7);                
-                troncoView[8].setX(posicionTronco8);                
-                troncoView[9].setX(posicionTronco9);
+                for(int i=8; i<16; i++){
+                    posicionCocheInt[i] -= velCoche;
+                    cocheView[i].setX(posicionCocheInt[i]);
+                    if (posicionCocheInt[i] <= -55){
+                        posicionCocheInt[i] = 825;
+                        cocheView[i].setX(posicionCocheInt[i]);
+                    }
+                }
 
-                if (posicionTronco0 >= 950){
-                    posicionTronco0 = -150;
-                    troncoView[0].setX(posicionCoche0);
+                //Movimiento Troncos
+                for(int i=0; i<10; i++){
+                    posicionTroncoInt[i] += velocidadTroncos;
+                    troncoView[i].setX(posicionTroncoInt[i]);
+                    if (posicionTroncoInt[i] >= 900){
+                        posicionTroncoInt[i] = -100;
+                        troncoView[i].setX(posicionTroncoInt[i]);
+                    }
                 }
-                if (posicionTronco1 >= 950){
-                    posicionTronco1 = -150;
-                    troncoView[1].setX(posicionCoche1);
-                }
-                if (posicionTronco2 >= 950){
-                    posicionTronco2 = -150;
-                    troncoView[2].setX(posicionCoche2);
-                }
-                if (posicionTronco3 >= 950){
-                    posicionTronco3 = -150;
-                    troncoView[3].setX(posicionCoche3);
-                }
-                if (posicionTronco4 >= 950){
-                    posicionTronco4 = -150;
-                    troncoView[4].setX(posicionCoche4);
-                }
-                if (posicionTronco5 >= 950){
-                    posicionTronco5 = -150;
-                    troncoView[5].setX(posicionCoche5);
-                }
-                if (posicionTronco6 >= 950){
-                    posicionTronco6 = -150;
-                    troncoView[6].setX(posicionCoche6);
-                }
-                if (posicionTronco7 >= 950){
-                    posicionTronco7 = -150;
-                    troncoView[7].setX(posicionCoche7);
-                }
-                if (posicionTronco8 >= 950){
-                    posicionTronco8 = -150;
-                    troncoView[8].setX(posicionCoche8);
-                }
-                if (posicionTronco9 >= 950){
-                    posicionTronco9 = -150;
-                    troncoView[9].setX(posicionCoche9);
-                }
+
+                //Movimiento Nenufares
+                for(int i=0; i<30; i++){
+                    posicionNenufarInt[i] += velNenufar;
+                    nenufarView[i].setX(posicionNenufarInt[i]);
+                    if (posicionNenufarInt[i] >= 895){
+                        posicionNenufarInt[i] = -100;
+                        nenufarView[i].setX(posicionNenufarInt[i]);
+                    }
+                }            
+
                 groupPersonaje.setLayoutY(posYPersonaje);
             })
         );
