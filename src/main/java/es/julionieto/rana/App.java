@@ -196,7 +196,9 @@ public class App extends Application {
         //Array de los coches
         ImageView cocheView[] = new ImageView[16];
         int posicionCocheInt[] = new int[16];
-        
+
+        Rectangle[] cocheRect = new Rectangle[16];
+
         //Primera fila
         posicionCocheInt[0] = 770;
         posicionCocheInt[1] = 660;
@@ -258,13 +260,27 @@ public class App extends Application {
             cocheView[i].setY(POSICION_FILA_2_COCHES);
             paneRoot.getChildren().add(cocheView[i]);
         }
+        for(int i=0; i<16; i++){
+            if(i>=8){
+                cocheRect[i] = new Rectangle(30, 25, Color.RED);
+                cocheRect[i].setX(posicionCocheInt[i]);
+                cocheRect[i].setY(POSICION_FILA_2_COCHES);
+            }else{
+                cocheRect[i] = new Rectangle(30, 25, Color.RED);
+                cocheRect[i].setX(posicionCocheInt[i]);
+                cocheRect[i].setY(POSICION_FILA_1_COCHES);
+            }
+            paneRoot.getChildren().add(cocheRect[i]);
+        }       
         
         //Troncos
         //Unica imagen del objeto tronco
         Image tronco = new Image(getClass().getResourceAsStream("/images/tronco_.jpg"));
         //Array de los troncos
-        ImageView troncoView[] = new ImageView[11];
+        ImageView troncoView[] = new ImageView[10];
         int posicionTroncoInt[] = new int[10];
+
+        Rectangle[] troncoRect = new Rectangle[10];
         
         //Primera fila
         posicionTroncoInt[0] = 50;
@@ -312,6 +328,18 @@ public class App extends Application {
             troncoView[i].setY(POSICION_FILA_2_TRONCOS);
             paneRoot.getChildren().add(troncoView[i]);
         }
+        for(int i=0; i<10; i++){
+            if(i>=5){
+                troncoRect[i] = new Rectangle(92, 35, Color.RED);
+                troncoRect[i].setX(posicionTroncoInt[i]);
+                troncoRect[i].setY(POSICION_FILA_2_TRONCOS);
+            }else{
+                troncoRect[i] = new Rectangle(92, 35, Color.RED);
+                troncoRect[i].setX(posicionTroncoInt[i]);
+                troncoRect[i].setY(POSICION_FILA_1_TRONCOS);
+            }
+            paneRoot.getChildren().add(troncoRect[i]);
+        }
         
         //Nenúfares
         //Única imagen del obejto nenufar
@@ -319,6 +347,9 @@ public class App extends Application {
         //Array de los nenúfares
         ImageView nenufarView[] = new ImageView[30];
         int posicionNenufarInt[] = new int[30];
+
+        Rectangle[] nenufarRect = new Rectangle[30];
+
         //Primera fila
         posicionNenufarInt[0] = 565;
         posicionNenufarInt[1] = 595;
@@ -438,6 +469,23 @@ public class App extends Application {
             nenufarView[i].setY(POSICION_FILA_3_NENUFARES);
             paneRoot.getChildren().add(nenufarView[i]);
         }
+
+        for(int i=0; i<30; i++){
+            if(i<10){
+                nenufarRect[i] = new Rectangle(32, 32, Color.GREEN);
+                nenufarRect[i].setX(posicionNenufarInt[i]);
+                nenufarRect[i].setY(POSICION_FILA_1_NENUFARES);
+            }if(i>=10){
+                nenufarRect[i] = new Rectangle(32, 32, Color.GREEN);
+                nenufarRect[i].setX(posicionNenufarInt[i]);
+                nenufarRect[i].setY(POSICION_FILA_2_NENUFARES);
+            }if(i>=20){
+                nenufarRect[i] = new Rectangle(32, 32, Color.GREEN);
+                nenufarRect[i].setX(posicionNenufarInt[i]);
+                nenufarRect[i].setY(POSICION_FILA_3_NENUFARES);
+            }
+            paneRoot.getChildren().add(nenufarRect[i]);
+        }
         
         VBox paneInfo = new VBox();
         paneInfo.setPrefWidth(scene.getWidth());
@@ -481,21 +529,26 @@ public class App extends Application {
             new KeyFrame(Duration.seconds(0.017),(ActionEvent ae) -> {
 
                 //Movimiento Coches
+
                 for(int i=0; i<8; i++){
                     posicionCocheInt[i] += velCoche;
                     cocheView[i].setX(posicionCocheInt[i]);
+                    cocheRect[i].setX(posicionCocheInt[i]);
                     if (posicionCocheInt[i] >= 825){
                         posicionCocheInt[i] = -55;
                         cocheView[i].setX(posicionCocheInt[i]);
+                        cocheRect[i].setX(posicionCocheInt[i]);
                     }
                 }
 
                 for(int i=8; i<16; i++){
                     posicionCocheInt[i] -= velCoche;
                     cocheView[i].setX(posicionCocheInt[i]);
+                    cocheRect[i].setX(posicionCocheInt[i]);
                     if (posicionCocheInt[i] <= -55){
                         posicionCocheInt[i] = 825;
                         cocheView[i].setX(posicionCocheInt[i]);
+                        cocheRect[i].setX(posicionCocheInt[i]);
                     }
                 }
 
@@ -503,9 +556,11 @@ public class App extends Application {
                 for(int i=0; i<10; i++){
                     posicionTroncoInt[i] += velocidadTroncos;
                     troncoView[i].setX(posicionTroncoInt[i]);
+                    troncoRect[i].setX(posicionTroncoInt[i]);
                     if (posicionTroncoInt[i] >= 900){
                         posicionTroncoInt[i] = -100;
                         troncoView[i].setX(posicionTroncoInt[i]);
+                        troncoRect[i].setX(posicionTroncoInt[i]);
                     }
                 }
 
@@ -513,9 +568,11 @@ public class App extends Application {
                 for(int i=0; i<30; i++){
                     posicionNenufarInt[i] += velNenufar;
                     nenufarView[i].setX(posicionNenufarInt[i]);
+                    nenufarRect[i].setX(posicionNenufarInt[i]);
                     if (posicionNenufarInt[i] >= 895){
                         posicionNenufarInt[i] = -100;
                         nenufarView[i].setX(posicionNenufarInt[i]);
+                        nenufarRect[i].setX(posicionNenufarInt[i]);
                     }
                 }            
 
@@ -531,6 +588,4 @@ public class App extends Application {
         launch();
     }
     
-    
-
 }
