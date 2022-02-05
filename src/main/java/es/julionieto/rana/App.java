@@ -271,6 +271,7 @@ public class App extends Application {
                 cocheRect[i].setY(POSICION_FILA_1_COCHES);
             }
             paneRoot.getChildren().add(cocheRect[i]);
+            cocheRect[i].setVisible(false);
         }       
         
         //Troncos
@@ -339,6 +340,7 @@ public class App extends Application {
                 troncoRect[i].setY(POSICION_FILA_1_TRONCOS);
             }
             paneRoot.getChildren().add(troncoRect[i]);
+            troncoRect[i].setVisible(false);
         }
         
         //Nenúfares
@@ -485,6 +487,7 @@ public class App extends Application {
                 nenufarRect[i].setY(POSICION_FILA_3_NENUFARES);
             }
             paneRoot.getChildren().add(nenufarRect[i]);
+            nenufarRect[i].setVisible(false);
         }
         
         VBox paneInfo = new VBox();
