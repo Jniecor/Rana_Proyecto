@@ -500,6 +500,23 @@ public class App extends Application {
             nenufarRect[i].setVisible(false);
         }
         
+        Rectangle[] finalRect = new Rectangle[7];
+        
+        for (int i=0; i<7; i++){
+            finalRect[i] = new Rectangle(32, 32, Color.GREEN);
+            finalRect[i].setY(78);
+            finalRect[i].setVisible(false);
+            paneRoot.getChildren().add(finalRect[i]);
+        }
+        
+        finalRect[0].setX(40);
+        finalRect[1].setX(155);
+        finalRect[2].setX(270);
+        finalRect[3].setX(385);
+        finalRect[4].setX(500);
+        finalRect[5].setX(615);
+        finalRect[6].setX(730);
+        
         VBox paneInfo = new VBox();
         paneInfo.setPrefWidth(scene.getWidth());
         paneInfo.setAlignment(Pos.CENTER);
@@ -512,7 +529,7 @@ public class App extends Application {
         // Texto de fin de partida
         labelGameover = new Text("Fin de partida");
         labelGameover.setVisible(false);
-        labelGameover.setFont(new Font(50));
+        labelGameover.setFont(new Font(40));
         labelGameover.setFill(Color.WHITE);
         
         //Adición de los label a la escena
@@ -547,6 +564,7 @@ public class App extends Application {
         Timeline animationGame = new Timeline(
             new KeyFrame(Duration.seconds(0.017),(ActionEvent ae) -> {
 
+                
                 colisionJugador.setX(posXPersonaje);
                 colisionJugador.setY(posYPersonaje);
                 for (int i=0; i<16; i++){
