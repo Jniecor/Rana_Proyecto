@@ -23,12 +23,15 @@ import javafx.util.Duration;
 
 
 
+
 public class App extends Application {
     
     //-----<Personaje>-----//
     Group groupPersonaje;
     double posXPersonaje = 375;
     double posYPersonaje = 570;
+    final double POS_X_PERSONAJE = 375;
+    final double POS_Y_PERSONAJE = 570;
     
     
     //-----<OBEJTOS>-----//
@@ -186,6 +189,13 @@ public class App extends Application {
         groupPersonaje.setLayoutX(posXPersonaje);
         groupPersonaje.setLayoutY(posYPersonaje);
         
+
+        Rectangle colisionJugador = new Rectangle(37, 25, Color.BLUE);
+        colisionJugador.setX(posXPersonaje);
+        colisionJugador.setY(posYPersonaje);
+        paneRoot.getChildren().add(colisionJugador);
+        colisionJugador.setVisible(false);
+
         //Coches
         //4 imagenes de los coches 
         Image cocheRojoDer = new Image(getClass().getResourceAsStream("/images/Coche_rojo_der.png"));
@@ -519,6 +529,12 @@ public class App extends Application {
                 case DOWN:
                     posYPersonaje += 10;
                     break;
+                case LEFT:
+                    posXPersonaje -= 10;
+                    break;
+                case RIGHT:
+                    posXPersonaje += 10;
+                    break;
             }
         });
         
@@ -530,6 +546,17 @@ public class App extends Application {
         
         Timeline animationGame = new Timeline(
             new KeyFrame(Duration.seconds(0.017),(ActionEvent ae) -> {
+
+                colisionJugador.setX(posXPersonaje);
+                colisionJugador.setY(posYPersonaje);
+                for (int i=0; i<16; i++){
+                    Shape zonaColision = Shape.intersect(cocheRect[i], colisionJugador);
+                    boolean colisionVaciaCoches = zonaColision.getBoundsInLocal().isEmpty();
+                    if (colisionVaciaCoches == false){
+                        groupPersonaje.setLayoutX(POS_X_PERSONAJE);
+                        groupPersonaje.setLayoutY(POS_Y_PERSONAJE);
+                    } 
+                }
 
                 //Movimiento Coches
 
@@ -580,6 +607,25 @@ public class App extends Application {
                 }            
 
                 groupPersonaje.setLayoutY(posYPersonaje);
+                groupPersonaje.setLayoutX(posXPersonaje);
+                if (posYPersonaje >= 570){
+                    groupPersonaje.setLayoutY(570);
+                    colisionJugador.setY(570);
+                }
+                if (posYPersonaje <= 100){
+                    groupPersonaje.setLayoutY(100);
+                    colisionJugador.setY(100);
+                }
+                if (posXPersonaje >= 770){
+                    groupPersonaje.setLayoutX(770);
+                    colisionJugador.setX(770);
+                }
+                if (posXPersonaje <= 10){
+                    groupPersonaje.setLayoutX(10);
+                    colisionJugador.setX(10);
+                }
+
+
             })
         );
         animationGame.setCycleCount(Timeline.INDEFINITE);
