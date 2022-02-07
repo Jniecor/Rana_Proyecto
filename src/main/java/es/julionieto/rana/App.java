@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -20,9 +21,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-
-
 
 public class App extends Application {
     
@@ -90,105 +88,6 @@ public class App extends Application {
         // Panel contenedor para los elementos animados del juego
         Pane paneScrollJuego = new Pane();
         paneRoot.getChildren().add(paneScrollJuego);
-        
-        /* --- DIBUJO DEL PERSONAJE --- */
-        groupPersonaje = new Group();
-        paneScrollJuego.getChildren().add(groupPersonaje);
-        
-        //Cabeza
-        Rectangle cabeza = new Rectangle(40, 20, Color.LIGHTGREEN);
-        cabeza.setX(20);
-        cabeza.setY(0);
-        cabeza.setWidth(10);
-        cabeza.setHeight(10);
-        groupPersonaje.getChildren().add(cabeza);
-            //Ojo izquierdo
-        Rectangle ojoIzq = new Rectangle(5, 5, Color.BLACK);
-        ojoIzq.setX(22);
-        ojoIzq.setY(2);
-        ojoIzq.setWidth(2);
-        ojoIzq.setHeight(2);
-        groupPersonaje.getChildren().add(ojoIzq);
-            //Ojo derecho
-        Rectangle ojoDer = new Rectangle(5, 5, Color.BLACK);
-        ojoDer.setX(26);
-        ojoDer.setY(2);
-        ojoDer.setWidth(2);
-        ojoDer.setHeight(2);
-        groupPersonaje.getChildren().add(ojoDer);
-        
-        //Cuerpo
-        Rectangle cuerpo = new Rectangle(40, 20, Color.LIGHTGREEN);
-        cuerpo.setX(17.5);
-        cuerpo.setY(10);
-        cuerpo.setWidth(15);
-        cuerpo.setHeight(15);
-        groupPersonaje.getChildren().add(cuerpo);
-        
-        //Piernas delanteras
-            //Pierna delantera izquierda
-        Rectangle piernaDelIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
-        piernaDelIzq.setX(14);
-        piernaDelIzq.setY(14);
-        piernaDelIzq.setWidth(4);
-        piernaDelIzq.setHeight(2);
-        groupPersonaje.getChildren().add(piernaDelIzq);
-            //Pierna delantera derecha
-        Rectangle piernaDelDer = new Rectangle(40, 20, Color.LIGHTGREEN);
-        piernaDelDer.setX(32);
-        piernaDelDer.setY(14);
-        piernaDelDer.setWidth(4);
-        piernaDelDer.setHeight(2);
-        groupPersonaje.getChildren().add(piernaDelDer);
-            //Pie delantero izquierdo
-        Rectangle pieDelIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
-        pieDelIzq.setX(14);
-        pieDelIzq.setY(8);
-        pieDelIzq.setWidth(4);
-        pieDelIzq.setHeight(7);
-        groupPersonaje.getChildren().add(pieDelIzq);
-            //Pie delantero derecho
-        Rectangle pieDelDer = new Rectangle(40, 20, Color.LIGHTGREEN);
-        pieDelDer.setX(32);
-        pieDelDer.setY(8);
-        pieDelDer.setWidth(4);
-        pieDelDer.setHeight(7);
-        groupPersonaje.getChildren().add(pieDelDer);
-        
-        //Piernas traseras
-            //Pierna trasera izquierda
-        Rectangle piernaTraIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
-        piernaTraIzq.setX(14);
-        piernaTraIzq.setY(20);
-        piernaTraIzq.setWidth(7);
-        piernaTraIzq.setHeight(5);
-        groupPersonaje.getChildren().add(piernaTraIzq);
-            //Pierna trasera derecha
-        Rectangle piernaTraDer = new Rectangle(40, 20, Color.LIGHTGREEN);
-        piernaTraDer.setX(29);
-        piernaTraDer.setY(20);
-        piernaTraDer.setWidth(7);
-        piernaTraDer.setHeight(5);
-        groupPersonaje.getChildren().add(piernaTraDer);
-            //Pie trasero izquierdo
-        Rectangle pieTraIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
-        pieTraIzq.setX(14);
-        pieTraIzq.setY(18);
-        pieTraIzq.setWidth(4);
-        pieTraIzq.setHeight(2);
-        groupPersonaje.getChildren().add(pieTraIzq);
-            //Pie trasero derecho
-        Rectangle pieTraDer = new Rectangle(40, 20, Color.LIGHTGREEN);
-        pieTraDer.setX(32);
-        pieTraDer.setY(18);
-        pieTraDer.setWidth(4);
-        pieTraDer.setHeight(2);
-        groupPersonaje.getChildren().add(pieTraDer);
-        
-        // Colocar personaje en su posición de inicio
-        groupPersonaje.setLayoutX(posXPersonaje);
-        groupPersonaje.setLayoutY(posYPersonaje);
-        
 
         Rectangle colisionJugador = new Rectangle(37, 25, Color.BLUE);
         colisionJugador.setX(posXPersonaje);
@@ -537,6 +436,104 @@ public class App extends Application {
         paneInfo.getChildren().add(labelGameover);
         paneRoot.getChildren().add(paneInfo);
         
+        /* --- DIBUJO DEL PERSONAJE --- */
+        groupPersonaje = new Group();
+        paneScrollJuego.getChildren().add(groupPersonaje);
+        
+        //Cabeza
+        Rectangle cabeza = new Rectangle(40, 20, Color.LIGHTGREEN);
+        cabeza.setX(20);
+        cabeza.setY(0);
+        cabeza.setWidth(10);
+        cabeza.setHeight(10);
+        groupPersonaje.getChildren().add(cabeza);
+            //Ojo izquierdo
+        Rectangle ojoIzq = new Rectangle(5, 5, Color.BLACK);
+        ojoIzq.setX(22);
+        ojoIzq.setY(2);
+        ojoIzq.setWidth(2);
+        ojoIzq.setHeight(2);
+        groupPersonaje.getChildren().add(ojoIzq);
+            //Ojo derecho
+        Rectangle ojoDer = new Rectangle(5, 5, Color.BLACK);
+        ojoDer.setX(26);
+        ojoDer.setY(2);
+        ojoDer.setWidth(2);
+        ojoDer.setHeight(2);
+        groupPersonaje.getChildren().add(ojoDer);
+        
+        //Cuerpo
+        Rectangle cuerpo = new Rectangle(40, 20, Color.LIGHTGREEN);
+        cuerpo.setX(17.5);
+        cuerpo.setY(10);
+        cuerpo.setWidth(15);
+        cuerpo.setHeight(15);
+        groupPersonaje.getChildren().add(cuerpo);
+        
+        //Piernas delanteras
+            //Pierna delantera izquierda
+        Rectangle piernaDelIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
+        piernaDelIzq.setX(14);
+        piernaDelIzq.setY(14);
+        piernaDelIzq.setWidth(4);
+        piernaDelIzq.setHeight(2);
+        groupPersonaje.getChildren().add(piernaDelIzq);
+            //Pierna delantera derecha
+        Rectangle piernaDelDer = new Rectangle(40, 20, Color.LIGHTGREEN);
+        piernaDelDer.setX(32);
+        piernaDelDer.setY(14);
+        piernaDelDer.setWidth(4);
+        piernaDelDer.setHeight(2);
+        groupPersonaje.getChildren().add(piernaDelDer);
+            //Pie delantero izquierdo
+        Rectangle pieDelIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
+        pieDelIzq.setX(14);
+        pieDelIzq.setY(8);
+        pieDelIzq.setWidth(4);
+        pieDelIzq.setHeight(7);
+        groupPersonaje.getChildren().add(pieDelIzq);
+            //Pie delantero derecho
+        Rectangle pieDelDer = new Rectangle(40, 20, Color.LIGHTGREEN);
+        pieDelDer.setX(32);
+        pieDelDer.setY(8);
+        pieDelDer.setWidth(4);
+        pieDelDer.setHeight(7);
+        groupPersonaje.getChildren().add(pieDelDer);
+        
+        //Piernas traseras
+            //Pierna trasera izquierda
+        Rectangle piernaTraIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
+        piernaTraIzq.setX(14);
+        piernaTraIzq.setY(20);
+        piernaTraIzq.setWidth(7);
+        piernaTraIzq.setHeight(5);
+        groupPersonaje.getChildren().add(piernaTraIzq);
+            //Pierna trasera derecha
+        Rectangle piernaTraDer = new Rectangle(40, 20, Color.LIGHTGREEN);
+        piernaTraDer.setX(29);
+        piernaTraDer.setY(20);
+        piernaTraDer.setWidth(7);
+        piernaTraDer.setHeight(5);
+        groupPersonaje.getChildren().add(piernaTraDer);
+            //Pie trasero izquierdo
+        Rectangle pieTraIzq = new Rectangle(40, 20, Color.LIGHTGREEN);
+        pieTraIzq.setX(14);
+        pieTraIzq.setY(18);
+        pieTraIzq.setWidth(4);
+        pieTraIzq.setHeight(2);
+        groupPersonaje.getChildren().add(pieTraIzq);
+            //Pie trasero derecho
+        Rectangle pieTraDer = new Rectangle(40, 20, Color.LIGHTGREEN);
+        pieTraDer.setX(32);
+        pieTraDer.setY(18);
+        pieTraDer.setWidth(4);
+        pieTraDer.setHeight(2);
+        groupPersonaje.getChildren().add(pieTraDer);
+        
+        // Colocar personaje en su posición de inicio
+        groupPersonaje.setLayoutX(posXPersonaje);
+        groupPersonaje.setLayoutY(posYPersonaje);
+        
         //Movimiento de la rana
         scene.setOnKeyPressed((KeyEvent event) -> {
             switch(event.getCode()) {
@@ -559,12 +556,11 @@ public class App extends Application {
             posYPersonaje = posYPersonaje;
         });
 
-
         
         Timeline animationGame = new Timeline(
             new KeyFrame(Duration.seconds(0.017),(ActionEvent ae) -> {
 
-                
+
                 colisionJugador.setX(posXPersonaje);
                 colisionJugador.setY(posYPersonaje);
                 for (int i=0; i<16; i++){
@@ -573,6 +569,20 @@ public class App extends Application {
                     if (colisionVaciaCoches == false){
                         groupPersonaje.setLayoutX(POS_X_PERSONAJE);
                         groupPersonaje.setLayoutY(POS_Y_PERSONAJE);
+                    } 
+                }
+                for (int i=0; i<10; i++){
+                    Shape zonaColision1 = Shape.intersect(troncoRect[i], colisionJugador);
+                    boolean colisionVaciaTroncos = zonaColision1.getBoundsInLocal().isEmpty();
+                    if (colisionVaciaTroncos == false){
+                        posXPersonaje += velocidadTroncos;
+                    } 
+                }
+                for (int i=0; i<30; i++){
+                    Shape zonaColision2 = Shape.intersect(nenufarRect[i], colisionJugador);
+                    boolean colisionVaciaNenufares = zonaColision2.getBoundsInLocal().isEmpty();
+                    if (colisionVaciaNenufares == false){
+                        posXPersonaje += velNenufar;
                     } 
                 }
 
