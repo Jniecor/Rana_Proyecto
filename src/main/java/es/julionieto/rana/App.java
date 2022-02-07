@@ -29,9 +29,9 @@ public class App extends Application {
     //-----<Personaje>-----//
     Group groupPersonaje;
     double posXPersonaje = 375;
-    double posYPersonaje = 570;
+    double posYPersonaje = 529.5;
     final double POS_X_PERSONAJE = 375;
-    final double POS_Y_PERSONAJE = 570;
+    final double POS_Y_PERSONAJE = 529.5;
     
     
     //-----<OBEJTOS>-----//
@@ -541,10 +541,10 @@ public class App extends Application {
         scene.setOnKeyPressed((KeyEvent event) -> {
             switch(event.getCode()) {
                 case UP:
-                    posYPersonaje -= 10;
+                    posYPersonaje -= 36;
                     break;
                 case DOWN:
-                    posYPersonaje += 10;
+                    posYPersonaje += 36;
                     break;
                 case LEFT:
                     posXPersonaje -= 10;
